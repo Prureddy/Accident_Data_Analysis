@@ -7,7 +7,50 @@ Traditional methods for analyzing accident data lack insights into patterns and 
 The analysis of accident data collected by the police reveals significant untapped potential for understanding and preventing accidents. Despite the vast volume of stored data, it is often underutilized for analyzing accident patterns and predicting future occurrences. This presents a critical opportunity to identify the multifaceted causes of accidents, including factors related to human behavior, road infrastructure, and structural design. By delving into the data, we can uncover the underlying causes of accidents, whether they stem from individual behaviors or deficiencies in road design. Utilizing advanced analytical techniques, we can forecast future accident occurrences, enabling proactive measures to mitigate risks and prevent similar incidents from happening again. To address these challenges effectively, a comprehensive strategy is proposed. This strategy encompasses raising public awareness through education and enforcement initiatives, influencing behavioral changes among road users. Additionally, engineering solutions aimed at enhancing road safety infrastructure play a crucial role in preventing accidents of similar nature. In summary, by leveraging the wealth of accident data available, implementing proactive measures, and fostering collaboration between various stakeholders, we can make substantial strides in reducing accidents and promoting safer road environments.
 
 ## Journey 
-
+```mermaid
+erDiagram
+    USER {
+        int UserID PK
+        string Name
+        string Email
+        string Password
+        string Role
+    }
+    
+    IMAGE {
+        int ImageID PK
+        int UserID FK
+        date UploadDate
+        string FilePath
+        string CropType
+    }
+    
+    DISEASE {
+        int DiseaseID PK
+        string DiseaseName
+        string Symptoms
+        string Description
+    }
+    
+    DIAGNOSIS {
+        int DiagnosisID PK
+        int ImageID FK
+        int DiseaseID FK
+        date DiagnosisDate
+        float ConfidenceScore
+    }
+    
+    RECOMMENDATION {
+        int RecommendationID PK
+        int DiseaseID FK
+        string RecommendationText
+    }
+    
+    USER ||--o{ IMAGE : uploads
+    IMAGE ||--|| DIAGNOSIS : has
+    DIAGNOSIS }o--|| DISEASE : identifies
+    DISEASE ||--o{ RECOMMENDATION : has
+```
 ```mermaid
 graph TD;
     A[Problem Statement Selection] --> B[Understanding the Procedure];
